@@ -549,9 +549,9 @@ class ChangeAdapter(nn.Module):
         self.weight_b = nn.Parameter(torch.tensor(1.0))
 
         for name, param in self.DinoEncoder.named_parameters():
-            # if "adapter" in name:
-            #     param.requires_grad = True
-            if "reins" in name:
+            if "adapter" in name:
+                param.requires_grad = True
+            elif "reins" in name:
                 if 'LL' in name or 'LH' in name or 'HL' in name or 'HH' in name or 'IWT' in name:
                     param.requires_grad = False
                 else:
